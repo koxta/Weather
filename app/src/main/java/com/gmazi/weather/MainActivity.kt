@@ -2,6 +2,14 @@ package com.gmazi.weather
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import com.gmazi.weather.models.CurrentWeatherResponse
+import com.gmazi.weather.services.APIWeather
+import com.gmazi.weather.services.RetrofitEventListener
+import com.gmazi.weather.services.WeatherClient
+import kotlinx.android.synthetic.main.activity_main.*
+import retrofit2.Call
+import kotlin.math.log
 
 class MainActivity : AppCompatActivity() {
 
@@ -10,5 +18,29 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        Log.d("asd","oncreate")
+        CallWeatherData()
+    }
+
+    internal fun CallWeatherData() {
+        Log.d("asd","call ")
+        WeatherClient.instance.getWeather( object : RetrofitEventListener {
+            override  fun onSuccess(call: Call<*>, response: Any) {
+                Log.d("asd",response.toString())
+                if (response is CurrentWeatherResponse) {
+                    Log.d("asd", "-----" + response.main?.temp)
+                    Log.d("asd",response.toString())
+                    main_temperature.text=response.main?.temp.toString()
+                }
+                else{
+                    Log.d("asd","not weather")
+                }
+            }
+
+            override fun onError(call: Call<*>, t: Throwable) {
+                Log.d("asd",t.toString())
+                Log.d("asd","asdasdasdasd")
+            }
+        })
     }
 }
