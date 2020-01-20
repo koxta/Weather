@@ -5,6 +5,7 @@ import android.util.Log
 import com.gmazi.weather.NetworkClient
 import com.gmazi.weather.models.CurrentWeatherResponse
 import com.gmazi.weather.models.Weather
+import com.gmazi.weather.models.WeatherForecast
 import java.util.HashMap
 import retrofit2.Call
 import retrofit2.Callback
@@ -17,6 +18,32 @@ class WeatherClient {
     }
 
     private var mApiWeather: APIWeather? = null
+    private var mApiForecast: APIWeather? = null
+
+    fun getForecast(retrofitEventListener: RetrofitEventListener){
+        val retrofit = NetworkClient.retrofitClient
+        mApiForecast = retrofit.create<APIWeather>(APIWeather::class.java)
+
+        val apiForevastCall = mApiWeather!!.getWeatherForecase()
+
+        apiForevastCall.enqueue(object : Callback<WeatherForecast> {
+            override fun onResponse(call: Call<WeatherForecast>?, response: Response<WeatherForecast>?) {
+                Log.d("asd",response.toString())
+                if (response?.body() != null) {
+                    if (call != null) {
+                        retrofitEventListener.onSuccess(call, response?.body()!!)
+                    }
+                }
+            }
+            override fun onFailure(call: Call<WeatherForecast>?, t: Throwable?) {
+                if (call != null) {
+                    if (t != null) {
+                        retrofitEventListener.onError(call, t)
+                    }
+                }
+            }
+        })
+    }
 
     fun getWeather(retrofitEventListener: RetrofitEventListener) {
         val retrofit = NetworkClient.retrofitClient

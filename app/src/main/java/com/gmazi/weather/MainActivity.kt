@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.gmazi.weather.models.CurrentWeatherResponse
+import com.gmazi.weather.models.WeatherForecast
 import com.gmazi.weather.services.APIWeather
 import com.gmazi.weather.services.RetrofitEventListener
 import com.gmazi.weather.services.WeatherClient
@@ -20,6 +21,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         Log.d("asd","oncreate")
         CallWeatherData()
+        getForecast()
     }
 
     internal fun CallWeatherData() {
@@ -42,6 +44,22 @@ class MainActivity : AppCompatActivity() {
             override fun onError(call: Call<*>, t: Throwable) {
                 Log.d("asd",t.toString())
                 Log.d("asd","asdasdasdasd")
+            }
+        })
+    }
+
+    internal fun getForecast(){
+        WeatherClient.instance.getForecast(object: RetrofitEventListener{
+            override fun onSuccess(call: Call<*>, response: Any) {
+                if(response is WeatherForecast){
+                    Log.d("asd","got forecast")
+
+                    Log.d("asd",response.list[0].main.temp.toString())
+                }
+            }
+
+            override fun onError(call: Call<*>, t: Throwable) {
+                Log.d("asd","error getting forecast")
             }
         })
     }
