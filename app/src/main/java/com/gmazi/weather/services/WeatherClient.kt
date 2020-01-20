@@ -18,15 +18,13 @@ class WeatherClient {
 
     private var mApiWeather: APIWeather? = null
 
-
     fun getWeather(retrofitEventListener: RetrofitEventListener) {
         val retrofit = NetworkClient.retrofitClient
         mApiWeather = retrofit.create<APIWeather>(APIWeather::class.java)
 
-        val apiUserCall = mApiWeather!!.getCurrentWeather()
+        val apiWeatherCall = mApiWeather!!.getCurrentWeather()
 
-        apiUserCall.enqueue(object : Callback<CurrentWeatherResponse> {
-
+        apiWeatherCall.enqueue(object : Callback<CurrentWeatherResponse> {
             override fun onResponse(call: Call<CurrentWeatherResponse>?, response: Response<CurrentWeatherResponse>?) {
                 Log.d("asd",response.toString())
                 if (response?.body() != null) {
@@ -36,9 +34,6 @@ class WeatherClient {
                 }
             }
             override fun onFailure(call: Call<CurrentWeatherResponse>?, t: Throwable?) {
-                /*
-                Error callback
-                */
                 if (call != null) {
                     if (t != null) {
                         retrofitEventListener.onError(call, t)

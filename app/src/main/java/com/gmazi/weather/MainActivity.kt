@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
                 if (response is CurrentWeatherResponse) {
                     Log.d("asd", "-----" + response.main?.temp)
                     Log.d("asd",response.toString())
-                    val currentCels = kalvinToCelsius(response.main.temp);
+                    val currentCels = kalvinToCelsius(response.main.temp)
 
                     main_temperature.text=currentCels.toString()+"°c"
                 }
