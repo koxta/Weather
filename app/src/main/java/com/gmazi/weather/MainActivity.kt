@@ -10,7 +10,13 @@ import com.gmazi.weather.services.RetrofitEventListener
 import com.gmazi.weather.services.WeatherClient
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
+import java.util.*
 import kotlin.math.log
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import kotlin.math.round
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -53,10 +59,40 @@ class MainActivity : AppCompatActivity() {
             override fun onSuccess(call: Call<*>, response: Any) {
                 if(response is WeatherForecast){
                     Log.d("asd","got forecast")
+                    val cal = Calendar.getInstance()
 
-                    Log.d("asd",response.list[0].main.temp.toString())
+                    var idx = 0
+                    for (list in response.list) {
+                        val myDate = getDate(list.dt)
+                        cal.setTime(myDate)
+                        val day = cal.get(Calendar.DAY_OF_MONTH)
+                        Log.d("asd",idx.toString()+" "+ getDates(idx++,response))
+                    }
+                    date1.text=getDates(0,response)
+                    temp11.text=getTemp(0,response)
+                    temp12.text=getTemp(7,response)
+
+                    date2.text=getDates(8,response)
+                    temp21.text=getTemp(8,response)
+                    temp22.text=getTemp(15,response)
+
+                    //16-23
+                    date3.text=getDates(16,response)
+                    temp31.text=getTemp(16,response)
+                    temp32.text=getTemp(23,response)
+                    //24-31
+                    date4.text=getDates(24,response)
+                    temp41.text=getTemp(24,response)
+                    temp42.text=getTemp(31,response)
+                    //32-39
+                    date5.text=getDates(32,response)
+                    temp51.text=getTemp(32,response)
+                    temp52.text=getTemp(39,response)
                 }
             }
+
+
+
 
             override fun onError(call: Call<*>, t: Throwable) {
                 Log.d("asd","error getting forecast")
@@ -67,4 +103,31 @@ class MainActivity : AppCompatActivity() {
     fun kalvinToCelsius(kalvin:Double): Double {
         return kalvin-273.15
     }
+
+    fun getDates(idx:Int,response: WeatherForecast): String {
+        return formatDate(response.list[idx].dt)
+    }
+
+    fun getTemp(idx:Int,response:WeatherForecast): String {
+        val temp = kalvinToCelsius(response.list[idx].main.temp)
+        return String.format("%.2f",temp)+"°c"
+    }
+
+    private fun getDate(epoc: Long): Date? {
+        try {
+            val netDate = Date(epoc*1000)
+            return netDate
+        } catch (e: Exception) {
+            Log.d("asd","error converting date")
+            return null
+        }
+    }
+
+    fun formatDate(date:Long): String {
+        val sdf = SimpleDateFormat("dd-MM-yy")
+        val date = Date(date * 1000)
+        return sdf.format(date)
+    }
+
+
 }
