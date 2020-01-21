@@ -71,23 +71,34 @@ class MainActivity : AppCompatActivity() {
                     date1.text=getDates(0,response)
                     temp11.text=getTemp(0,response)
                     temp12.text=getTemp(7,response)
+                    img1.setBackgroundResource(getImage(response,0))
+                    img12.setBackgroundResource(getImageNight(response,7))
+
 
                     date2.text=getDates(8,response)
                     temp21.text=getTemp(8,response)
                     temp22.text=getTemp(15,response)
+                    img2.setBackgroundResource(getImage(response,8))
+                    img22.setBackgroundResource(getImageNight(response,15))
 
                     //16-23
                     date3.text=getDates(16,response)
                     temp31.text=getTemp(16,response)
                     temp32.text=getTemp(23,response)
+                    img3.setBackgroundResource(getImage(response,16))
+                    img32.setBackgroundResource(getImageNight(response,23))
                     //24-31
                     date4.text=getDates(24,response)
                     temp41.text=getTemp(24,response)
                     temp42.text=getTemp(31,response)
+                    img4.setBackgroundResource(getImage(response,24))
+                    img42.setBackgroundResource(getImageNight(response,31))
                     //32-39
                     date5.text=getDates(32,response)
                     temp51.text=getTemp(32,response)
                     temp52.text=getTemp(39,response)
+                    img5.setBackgroundResource(getImage(response,32))
+                    img52.setBackgroundResource(getImageNight(response,39))
                 }
             }
 
@@ -99,6 +110,26 @@ class MainActivity : AppCompatActivity() {
             }
         })
     }
+
+    fun getImage(response: WeatherForecast,idx:Int): Int {
+        return when (response.list[idx].weather[0].main){
+            "Clear" -> R.drawable.sun
+            "Clouds" -> R.drawable.cloud
+            "Rain" -> R.drawable.cloud_rain
+            else -> R.drawable.sun
+        }
+    }
+
+    fun getImageNight(response: WeatherForecast,idx:Int): Int {
+        return when (response.list[idx].weather[0].main){
+            "Clear" -> R.drawable.moon
+            "Clouds" -> R.drawable.moon_cloud
+            "Rain" -> R.drawable.moon_cloud_rain
+            else -> R.drawable.moon
+        }
+    }
+
+
 
     fun kalvinToCelsius(kalvin:Double): Double {
         return kalvin-273.15
