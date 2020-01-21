@@ -99,6 +99,30 @@ class MainActivity : AppCompatActivity() {
                     temp52.text=getTemp(39,response)
                     img5.setBackgroundResource(getImage(response,32))
                     img52.setBackgroundResource(getImageNight(response,39))
+
+                    ////////////////////////
+
+                    hText1.text = getTemp(0,response)
+                    hImg1.setBackgroundResource(getImage(response,0))
+                    hText12.text = getHours(0,response)
+
+
+                    hText2.text = getTemp(1,response)
+                    hImg2.setBackgroundResource(getImage(response,1))
+                    hText22.text = getHours(1,response)
+
+                    hText3.text = getTemp(2,response)
+                    hImg3.setBackgroundResource(getImage(response,2))
+                    hText32.text = getHours(2,response)
+
+                    hText4.text = getTemp(3,response)
+                    hImg4.setBackgroundResource(getImage(response,3))
+                    hText42.text = getHours(3,response)
+
+                    hText5.text = getTemp(4,response)
+                    hImg5.setBackgroundResource(getImage(response,4))
+                    hText52.text = getHours(4,response)
+
                 }
             }
 
@@ -139,6 +163,10 @@ class MainActivity : AppCompatActivity() {
         return formatDate(response.list[idx].dt)
     }
 
+    fun getHours(idx:Int,response: WeatherForecast): String {
+        return formatTime(response.list[idx].dt)
+    }
+
     fun getTemp(idx:Int,response:WeatherForecast): String {
         val temp = kalvinToCelsius(response.list[idx].main.temp)
         return String.format("%.2f",temp)+"°c"
@@ -156,6 +184,12 @@ class MainActivity : AppCompatActivity() {
 
     fun formatDate(date:Long): String {
         val sdf = SimpleDateFormat("dd-MM-yy")
+        val date = Date(date * 1000)
+        return sdf.format(date)
+    }
+
+    fun formatTime(date:Long):String{
+        val sdf = SimpleDateFormat("hh-mm")
         val date = Date(date * 1000)
         return sdf.format(date)
     }

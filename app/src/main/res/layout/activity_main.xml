@@ -47,6 +47,215 @@
               android:textSize="30sp"
               android:textColor="@color/white"
     />
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+            android:gravity="center"
+            >
+
+
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_margin="10dp"
+                >
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/hText1"
+                    android:textColor="@color/white"
+                    tools:text="asdasd"
+                    android:textSize="20sp"
+                    />
+
+            <ImageView
+                    android:id="@+id/hImg1"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:maxWidth="20dp"
+                    android:maxHeight="20dp"
+                    tools:src="@drawable/cloud"
+                    />
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/hText12"
+                    android:textColor="@color/white"
+                    tools:text="asdasd"
+                    android:textSize="20sp"
+                    />
+        </LinearLayout>
+
+
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_margin="10dp"
+                >
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/hText2"
+                    android:textColor="@color/white"
+                    tools:text="asdasd"
+                    android:textSize="20sp"
+                    />
+
+            <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/hImg2"
+                    tools:src="@drawable/cloud"
+                    android:maxHeight="20dp"
+                    android:maxWidth="20dp"
+
+                    />
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/hText22"
+                    android:textColor="@color/white"
+                    tools:text="asdasd"
+                    android:textSize="20sp"
+                    />
+        </LinearLayout>
+
+
+
+
+
+
+
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_margin="10dp"
+                >
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/hText3"
+                    android:textColor="@color/white"
+                    tools:text="asdasd"
+                    android:textSize="20sp"
+                    />
+
+            <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/hImg3"
+                    tools:src="@drawable/cloud"
+                    android:maxHeight="20dp"
+                    android:maxWidth="20dp"
+                    />
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/hText32"
+                    android:textColor="@color/white"
+                    tools:text="asdasd"
+                    android:textSize="20sp"
+                    />
+        </LinearLayout>
+
+
+
+<!--4-->
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_margin="10dp"
+                >
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/hText4"
+                    android:textColor="@color/white"
+                    tools:text="asdasd"
+                    android:textSize="20sp"
+                    />
+
+            <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/hImg4"
+                    tools:src="@drawable/cloud"
+                    android:maxHeight="20dp"
+                    android:maxWidth="20dp"
+                    />
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/hText42"
+                    android:textColor="@color/white"
+                    tools:text="asdasd"
+                    android:textSize="20sp"
+                    />
+        </LinearLayout>
+
+
+<!--5-->
+
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_margin="10dp"
+                >
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/hText5"
+                    android:textColor="@color/white"
+                    tools:text="asdasd"
+                    android:textSize="20sp"
+                    />
+
+            <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/hImg5"
+                    tools:src="@drawable/cloud"
+                    android:maxHeight="20dp"
+                    android:maxWidth="20dp"
+                    />
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/hText52"
+                    android:textColor="@color/white"
+                    tools:text="asdasd"
+                    android:textSize="20sp"
+                    />
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
     <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="200dp"
                   android:layout_marginBottom="8dp"
                   app:layout_constraintBottom_toBottomOf="parent" android:id="@+id/linearLayout2">
